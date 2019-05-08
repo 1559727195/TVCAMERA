@@ -2,6 +2,7 @@ package com.massky.tvcamera.di.component;
 
 import android.app.Activity;
 
+import com.ipcamera.demo.PlayActivity;
 import com.massky.tvcamera.MainActivity;
 import com.massky.tvcamera.di.module.ActivityModule;
 import com.massky.tvcamera.di.module.EntityModule;
@@ -13,5 +14,6 @@ import dagger.Component;
 @Component(dependencies = AppComponent.class,modules = {ActivityModule.class, EntityModule.class})
 public interface ActivityComponent {
     Activity getActivity();
-    void inject(MainActivity mainActivity);
+//    void inject(MainActivity mainActivity);
+    void inject(PlayActivity playActivity);
 }
