@@ -1,6 +1,7 @@
 package com.massky.domain.weather;
 
 import android.text.TextUtils;
+
 import com.google.gson.JsonObject;
 import com.massky.domain.constant.CodeConstant;
 import com.massky.domain.entity.repository.weather.WeatherRepository;
@@ -18,7 +19,7 @@ import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public class WeatherUseCase extends UseCase<WeatherXinZhiEntity.FinalEntity,WeatherUseCase.Params>{
+public class WeatherUseCase extends UseCase<WeatherXinZhiEntity.FinalEntity, WeatherUseCase.Params> {
     private final WeatherRepository mWeatherRepository;
 
     @Inject
@@ -28,8 +29,8 @@ public class WeatherUseCase extends UseCase<WeatherXinZhiEntity.FinalEntity,Weat
 
     @Override
     protected Flowable<WeatherXinZhiEntity.FinalEntity> buildUseCaseObservable(Params params) {
-        return mWeatherRepository.getWeatherList(params.key,params.city,params.province)
-            .observeOn(Schedulers.io())
+        return mWeatherRepository.getWeatherList(params.key, params.city, params.province)
+                .observeOn(Schedulers.io())
                 .flatMap(this::handleData)
                 .observeOn(AndroidSchedulers.mainThread());
     }
@@ -39,24 +40,18 @@ public class WeatherUseCase extends UseCase<WeatherXinZhiEntity.FinalEntity,Weat
         if (jsonObject == null) {
             return Flowable.error(new ApiException(CodeConstant.CODE_EMPTY, "数据为空，请求个毛线！"));
         }
-        if (jsonObject.has("results")) {
+        if (jsonObject.has("result")) {
             // 请求成功，转换数据
-            List<WeatherXinZhiEntity.ResultsEntity> results = JsonUtil.fromJsonList(jsonObject.get("results").toString(), WeatherXinZhiEntity.ResultsEntity.class);
+            List<WeatherXinZhiEntity.ResultsEntity> results = JsonUtil.fromJsonList(jsonObject.get("result").toString(), WeatherXinZhiEntity.ResultsEntity.class);
             if (results == null || results.isEmpty()) {
                 return Flowable.error(new ApiException(CodeConstant.CODE_EMPTY, "数据为空，请求个毛线！"));
             }
             WeatherXinZhiEntity.ResultsEntity temWeather = results.get(0);
-            WeatherXinZhiEntity.ResultsEntity.LocationEntity locationEntity = temWeather.getLocation();
-            String id = locationEntity == null ? String.valueOf(System.currentTimeMillis()) : locationEntity.getId();
-            String location = locationEntity == null ? "— —" : locationEntity.getName();
-            WeatherXinZhiEntity.ResultsEntity.NowEntity nowEntity = temWeather.getNow();
-            String text = nowEntity == null ? "— —" : nowEntity.getText();
-            String temperature = nowEntity == null ? "— —" : String.format("%s ℃", nowEntity.getTemperature());
-            String weatherLastUpdate = temWeather.getLast_update();
-            int indexOf = weatherLastUpdate.indexOf("T");
-            String lastUpdate = TextUtils.isEmpty(weatherLastUpdate) ? "— —" : weatherLastUpdate.substring(indexOf + 1, indexOf + 6);
-            String code = nowEntity == null ? "99" : nowEntity.getCode();
-            return Flowable.just(new WeatherXinZhiEntity.FinalEntity(id, location, text, temperature, lastUpdate, code));
+            int pm25 = temWeather.getAirQuality().getPm25();
+            String id = String.valueOf(System.currentTimeMillis());
+            String humidity = temWeather.getHumidity();
+            String temperature = temWeather.getTemperature();
+            return Flowable.just(new WeatherXinZhiEntity.FinalEntity(id, pm25, humidity, temperature));
         }
         if (jsonObject.has("status")) {
             // 请求错误，提示用户
@@ -86,8 +81,8 @@ public class WeatherUseCase extends UseCase<WeatherXinZhiEntity.FinalEntity,Weat
         //    return new Params(KEY, location, DEFAULT_LANGUAGE, DEFAULT_UNIT);
         //}
 
-        public static Params get(String city,String province) {
-            return new Params(KEY,city,province);
+        public static Params get(String city, String province) {
+            return new Params(KEY, city, province);
         }
     }
 }

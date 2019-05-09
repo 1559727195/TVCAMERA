@@ -292,18 +292,304 @@
         </LinearLayout>
     </HorizontalScrollView>
 
-    <RelativeLayout
-        android:layout_width="@dimen/x250"
-        android:layout_height="@dimen/y100"
+    <LinearLayout
         android:id="@+id/pm_rel"
+        android:layout_width="@dimen/x320"
+        android:layout_height="@dimen/x150"
         android:layout_gravity="bottom|right"
         android:layout_marginRight="@dimen/x8"
         android:layout_marginBottom="@dimen/x8"
-        android:background="#5D5F5E"
         android:alpha="0.5"
-        >
+        android:background="#5D5F5E"
+        android:orientation="horizontal">
 
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.45"
+            android:orientation="vertical">
 
-    </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/y8"
+                android:gravity="center"
+                android:text="室外"
+                android:textColor="@color/color_white" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/y10"
+                    android:layout_marginBottom="@dimen/y10"
+                    android:layout_weight="0.3">
+                    <ImageView
+                        android:layout_width="@dimen/x25"
+                        android:layout_height="@dimen/x25"
+
+                        android:layout_alignParentTop="true"
+                        android:layout_marginLeft="@dimen/x8"
+                        android:src="@drawable/icon_pm25" />
+                    <ImageView
+                        android:layout_width="@dimen/x25"
+                        android:layout_height="@dimen/x25"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/x8"
+                        android:src="@drawable/icon_wendu" />
+                    <ImageView
+                        android:layout_width="@dimen/x25"
+                        android:layout_height="@dimen/x25"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="@dimen/x8"
+                        android:src="@drawable/icon_shidu" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/y10"
+                    android:layout_marginBottom="@dimen/y10"
+                    android:layout_weight="0.4">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:gravity="left"
+                        android:text="PM2.5"
+                        android:textColor="@color/color_white" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:gravity="left"
+                        android:text="温度"
+                        android:textColor="@color/color_white" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:gravity="left"
+                        android:text="湿度"
+                        android:textColor="@color/color_white" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/y10"
+                    android:layout_marginBottom="@dimen/y10"
+                    android:layout_weight="0.3">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:gravity="left"
+                        android:id="@+id/pm_out"
+                        android:text="38"
+                        android:textColor="@color/color_white" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:gravity="left"
+                        android:id="@+id/temp_out"
+                        android:text="15℃"
+                        android:textColor="@color/color_white" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:gravity="left"
+                        android:id="@+id/shidu_out"
+                        android:text="60%"
+                        android:textColor="@color/color_white" />
+                </RelativeLayout>
+            </LinearLayout>
+            <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--&gt;-->
+            <!--<ImageView-->
+            <!--android:layout_width="@dimen/x30"-->
+            <!--android:layout_height="@dimen/x30"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_alignParentLeft="true"-->
+            <!--android:src="@drawable/icon_pm25"/>-->
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:textColor="@color/color_white"-->
+            <!--android:text="PM2.5"/>-->
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:textColor="@color/color_white"-->
+            <!--android:text="30"/>-->
+            <!--</RelativeLayout>-->
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="0.1">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/y8"
+                android:gravity="center"
+                android:text="  "
+                android:textColor="@color/color_white" />
+            <View
+                android:layout_width="@dimen/x1"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/y10"
+                android:layout_marginBottom="@dimen/y10"
+                android:background="@drawable/line">
+
+            </View>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.45"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/y8"
+                android:gravity="center"
+                android:text="室内"
+                android:textColor="@color/color_white" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/y10"
+                    android:layout_marginBottom="@dimen/y10"
+                    android:layout_weight="0.3">
+                    <ImageView
+                        android:layout_width="@dimen/x25"
+                        android:layout_height="@dimen/x25"
+
+                      android:layout_alignParentTop="true"
+                        android:layout_marginLeft="@dimen/x8"
+                        android:src="@drawable/icon_pm25" />
+                    <ImageView
+                        android:layout_width="@dimen/x25"
+                        android:layout_height="@dimen/x25"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/x8"
+                        android:src="@drawable/icon_wendu" />
+                    <ImageView
+                        android:layout_width="@dimen/x25"
+                        android:layout_height="@dimen/x25"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="@dimen/x8"
+                        android:src="@drawable/icon_shidu" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/y10"
+                    android:layout_marginBottom="@dimen/y10"
+                    android:layout_weight="0.4">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:gravity="left"
+                        android:text="PM2.5"
+                        android:textColor="@color/color_white" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:gravity="left"
+                        android:text="温度"
+                        android:textColor="@color/color_white" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:gravity="left"
+                        android:text="湿度"
+                        android:textColor="@color/color_white" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/y10"
+                    android:layout_marginBottom="@dimen/y10"
+                    android:layout_weight="0.3">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:gravity="left"
+                        android:text="38"
+                        android:textColor="@color/color_white" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:gravity="left"
+                        android:text="15℃"
+                        android:textColor="@color/color_white" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:gravity="left"
+                        android:text="60%"
+                        android:textColor="@color/color_white" />
+                </RelativeLayout>
+            </LinearLayout>
+            <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--&gt;-->
+            <!--<ImageView-->
+            <!--android:layout_width="@dimen/x30"-->
+            <!--android:layout_height="@dimen/x30"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_alignParentLeft="true"-->
+            <!--android:src="@drawable/icon_pm25"/>-->
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:textColor="@color/color_white"-->
+            <!--android:text="PM2.5"/>-->
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:textColor="@color/color_white"-->
+            <!--android:text="30"/>-->
+            <!--</RelativeLayout>-->
+        </LinearLayout>
+    </LinearLayout>
 
 </FrameLayout>
