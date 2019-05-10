@@ -6,6 +6,7 @@ import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 import com.massky.data.logger.HttpLogger;
+import com.massky.data.service.CommonPostService;
 import com.massky.data.service.WeatherService;
 import com.massky.data.util.NetworkUtils;
 import com.massky.domain.bus.DownloadEvent;
@@ -40,6 +41,7 @@ public class HttpHelper {
 
     private OkHttpClient mOkHttpClient;
     private WeatherService mWeatherService;
+    private CommonPostService mCommonPostService;
 
     @Inject
     public HttpHelper(Context context) {
@@ -119,6 +121,23 @@ public class HttpHelper {
             }
         }
         return mWeatherService;
+    }
+
+    //封装retrofit2
+    public CommonPostService getCommonPostService() {
+        if (mCommonPostService == null) {
+            synchronized (this) {
+                if (mCommonPostService == null) {
+                    mCommonPostService = new Retrofit.Builder()
+                            .baseUrl(CommonPostService.HOST)
+                            .client(mOkHttpClient)
+                            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .build().create(CommonPostService.class);
+                }
+            }
+        }
+        return mCommonPostService;
     }
 
     /**

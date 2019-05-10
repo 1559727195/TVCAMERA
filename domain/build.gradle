@@ -45,5 +45,6 @@ dependencies {
     implementation libs.rxjava
     implementation libs.rxandroid
     implementation libs.arrow
+    implementation 'com.alibaba:fastjson:1.2.49'
 
 }

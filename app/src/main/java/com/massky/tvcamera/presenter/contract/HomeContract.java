@@ -20,6 +20,7 @@ import com.massky.domain.entity.weather.WeatherXinZhiEntity;
 import com.massky.tvcamera.base.IPresenter;
 import com.massky.tvcamera.base.IView;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,10 +33,14 @@ public interface HomeContract {
 
     interface View extends IView {
         void showWeather(WeatherXinZhiEntity.FinalEntity weatherEntity);
+
+        void showPost(WeatherXinZhiEntity.CommonEntity commonEntity);
     }
 
     interface Presenter extends IPresenter<View> {
 
         void getWeather(String city, String province);
+        void post(Map map);
+
     }
 }

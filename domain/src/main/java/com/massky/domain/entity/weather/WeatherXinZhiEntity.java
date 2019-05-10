@@ -26,6 +26,81 @@ import java.util.List;
  */
 public class WeatherXinZhiEntity {
 
+
+    public static class CommonEntity extends MultiTypeIdEntity {
+        /**
+         * result : 100
+         * humidity : 38
+         * pm25 : 30
+         * temperature : 22
+         */
+
+        private String result;
+        private String humidity;
+        private String pm25;
+        private String temperature;
+        private String id;
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getResult() {
+            return result;
+        }
+
+        public void setResult(String result) {
+            this.result = result;
+        }
+
+        public String getHumidity() {
+            return humidity;
+        }
+
+        public void setHumidity(String humidity) {
+            this.humidity = humidity;
+        }
+
+        public String getPm25() {
+            return pm25;
+        }
+
+        public void setPm25(String pm25) {
+            this.pm25 = pm25;
+        }
+
+        public String getTemperature() {
+            return temperature;
+        }
+
+        public void setTemperature(String temperature) {
+            this.temperature = temperature;
+        }
+
+        public static final int TYPE_COMMON = 3;
+
+        public CommonEntity() {
+
+        }
+        public CommonEntity(String id,String humidity, String pm25, String temperature) {
+            this.id = id;
+            this.pm25 = pm25;
+            this.humidity = humidity;
+            this.temperature = temperature;
+        }
+//
+//
+        @Override
+        public String getStringId() {
+            return id;
+        }
+
+        @Override
+        public int getItemType() {
+            return TYPE_COMMON;
+        }
+    }
+
       public static class FinalEntity extends MultiTypeIdEntity {
 
         public static final int TYPE_WEATHER = 2;
@@ -81,6 +156,7 @@ public class WeatherXinZhiEntity {
             return TYPE_WEATHER;
         }
     }
+
 
      public static class ResultsEntity {
 

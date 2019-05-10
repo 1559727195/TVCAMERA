@@ -3,7 +3,9 @@ package com.massky.tvcamera.di.module;
 
 import android.content.Context;
 import com.massky.data.api.HttpHelper;
+import com.massky.data.common.CommonDataRepository;
 import com.massky.data.weather.WeatherDataRepository;
+import com.massky.domain.entity.repository.post.CommonRepository;
 import com.massky.domain.entity.repository.weather.WeatherRepository;
 import com.massky.tvcamera.Utils.App;
 import javax.inject.Singleton;
@@ -38,5 +40,9 @@ public class AppModule {
         return weatherRepository;
     }
 
-
+    @Provides
+    @Singleton
+    CommonRepository provideCommonRepository(CommonDataRepository commonDataRepository) {
+        return commonDataRepository;
+    }
 }

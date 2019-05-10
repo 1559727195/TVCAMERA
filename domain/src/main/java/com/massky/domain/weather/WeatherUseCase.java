@@ -1,20 +1,14 @@
 package com.massky.domain.weather;
 
-import android.text.TextUtils;
-
 import com.google.gson.JsonObject;
 import com.massky.domain.constant.CodeConstant;
 import com.massky.domain.entity.repository.weather.WeatherRepository;
 import com.massky.domain.entity.weather.WeatherXinZhiEntity;
 import com.massky.domain.exception.ApiException;
 import com.massky.domain.util.JsonUtil;
-
 import org.reactivestreams.Publisher;
-
 import java.util.List;
-
 import javax.inject.Inject;
-
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -49,7 +43,8 @@ public class WeatherUseCase extends UseCase<WeatherXinZhiEntity.FinalEntity, Wea
             WeatherXinZhiEntity.ResultsEntity temWeather = results.get(0);
             int pm25 = temWeather.getAirQuality().getPm25();
             String id = String.valueOf(System.currentTimeMillis());
-            String humidity = temWeather.getHumidity();
+            String [] splits = temWeather.getHumidity().trim().split("\\：");
+            String humidity = splits[1];
             String temperature = temWeather.getTemperature();
             return Flowable.just(new WeatherXinZhiEntity.FinalEntity(id, pm25, humidity, temperature));
         }
